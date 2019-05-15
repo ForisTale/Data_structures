@@ -5,6 +5,9 @@ class Node:
         self.value = value
         self.link_node = link_node
 
+    def __repr__(self):
+        return "Node with value: " + str(self.value)
+
     def get_value(self):
         return self.value
 
