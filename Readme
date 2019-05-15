@@ -1,0 +1,492 @@
+Linear data structures:
+    Nodes:
+        Contain data, which can be a variety of data types
+        Contain links to other nodes. If a node has no links, or they are all null,
+	    you have reached the end of the path you were following.
+        Can be orphaned if there are no existing links to them
+	    example class Node:
+	    class Node():
+		    def __init__(self, value, link_node = None):
+			    self.value = value
+			    self.link_node = link_node
+	    With methods get_value, get_link_node, set_link_node
+
+    Linked list:
+        Are comprised of nodes
+        The nodes contain a link to the next node (and also the previous node for bidirectional linked lists)
+        Can be unidirectional or bidirectional
+        Are a basic data structure, and form the basis for many other data structures
+        Have a single head node, which serves as the first node in the list
+        Require some maintenance in order to add or remove nodes
+        The methods we used are an example and depend on the exact use case and/or programming language being used
+
+	    Code that present LinkedList with methods get_head_node, insert_beginning, stringify_list, remove_node
+	    and allow iter LinkedList.
+
+        class LinkedList:
+            def __init__(self, value=None):
+                self.head_node = Node(value)
+
+            def get_head_node(self):
+                return self.head_node
+
+            def insert_beginning(self, new_value):
+                new_node = Node(new_value)
+                new_node.set_next_node(self.head_node)
+                self.head_node = new_node
+
+            def stringify_list(self):
+                string_list = ""
+                current_node = self.get_head_node()
+                while current_node:
+                    if current_node.get_value() != None:
+                        string_list += str(current_node.get_value()) + "\n"
+                    current_node = current_node.get_next_node()
+                return string_list
+
+            def remove_node(self, value_to_remove):
+                current_node = self.get_head_node()
+                if current_node.get_value() == value_to_remove:
+                    self.head_node = current_node.get_next_node()
+                else:
+                    while current_node:
+                    next_node = current_node.get_next_node()
+                    if next_node.get_value() == value_to_remove:
+                        current_node.set_next_node(next_node.get_next_node())
+                        current_node = None
+                    else:
+                        current_node = next_node
+
+            def __iter__(self):
+                current_node = self.head_node
+                while current_node:
+                    yield current_node.get_value()
+
+                    current_node = current_node.get_next_node()
+
+    Stacks:
+        Contain data nodes
+        Support three main operations
+            Push adds data to the top of the stack
+            Pop removes and provides data from the top of the stack
+            Peek reveals data on the top of the stack
+        Implementations include a linked list or array
+        Can have a limited size
+            Pushing data onto a full stack results in a stack overflow, to prevent it use method has_space or similar.
+            Removing data from empty stack results in a stack underflow, to prevent it use method is_empty or similar.
+        Stacks process data Last In, First Out (LIFO)
+
+        Code that present simple Stack class:
+
+        class Stack:
+            def __init__(self, limit=1000):
+                self.top_item = None
+                self.size = 0
+                self.limit = limit
+
+            def push(self, value):
+                if self.has_space():
+                    item = Node(value)
+                    item.set_next_node(self.top_item)
+                    self.top_item = item
+                    self.size += 1
+                    print("Adding {} to the pizza stack!".format(value))
+                else:
+                    print("No room for {}!".format(value))
+
+            def pop(self):
+                if not self.is_empty():
+                    item_to_remove = self.top_item
+                    self.top_item = item_to_remove.get_next_node()
+                    self.size -= 1
+                    print("Delivering " + item_to_remove.get_value())
+                    return item_to_remove.get_value()
+                print("All out of pizza.")
+
+            def peek(self):
+                if not self.is_empty():
+                    return self.top_item.get_value()
+                print("Nothing to see here!")
+
+            def has_space(self):
+                return self.limit > self.size
+
+            def is_empty(self):
+                return self.size == 0
+
+    Queues:
+        Contain data nodes
+        Support three main operations:
+            Enqueue adds data to the back of the queue
+            Dequeue removes and provides data from the front of the queue
+            Peek provides data on the front of the queue
+        Can be implemented using a linked list or array
+        Bounded queues have a limited size.
+        Enqueueing onto a full queue causes a queue overflow
+        Queues process data First In, First Out (FIFO)
+
+        Code that represent simple Queue class:
+
+        class Queue:
+            def __init__(self, max_size=None):
+                self.head = None
+                self.tail = None
+                self.max_size = max_size
+                self.size = 0
+
+            def enqueue(self, value):
+                if self.has_space():
+                    item_to_add = Node(value)
+                    print("Adding " + str(item_to_add.get_value()) + " to the queue!")
+                    if self.is_empty():
+                        self.head = item_to_add
+                        self.tail = item_to_add
+                    else:
+                        self.tail.set_next_node(item_to_add)
+                        self.tail = item_to_add
+                    self.size += 1
+                else:
+                    print("Sorry, no more room!")
+
+            def dequeue(self):
+                if self.get_size() > 0:
+                    item_to_remove = self.head
+                    print(str(item_to_remove.get_value()) + " is served!")
+                    if self.get_size() == 1:
+                        self.head = None
+                        self.tail = None
+                    else:
+                        self.head = self.head.get_next_node()
+                    self.size -= 1
+                    return item_to_remove.get_value()
+                else:
+                    print("The queue is totally empty!")
+
+            def peek(self):
+                if self.size > 0:
+                    return self.head.get_value()
+                else:
+                    print("No orders waiting!")
+
+            def get_size(self):
+                return self.size
+
+            def has_space(self):
+                if self.max_size == None:
+                    return True
+                else:
+                    return self.max_size > self.get_size()
+
+            def is_empty(self):
+                return self.size == 0
+
+Complex data structures:
+    Hash maps:
+        A hash map is:
+
+        Built on top of an array using a special indexing system.
+        A key-value storage with fast assignments and lookup.
+        A table that represents a map from a set of keys to a set of values.
+
+
+        Hash map: A key-value store that uses an array and a hashing function to save and retrieve values.
+        Key: The identifier given to a value for later retrieval.
+        Hash function: A function that takes some input and returns a number.
+        Compression function: A function that transforms its inputs into some smaller range of possible outputs.
+
+        Recipe for saving to a hash table:
+        - Take the key and plug it into the hash function, getting the hash code.
+        - Modulo that hash code by the length of the underlying array, getting an array index.
+        - Check if the array at that index is empty, if so, save the value (and the key) there.
+        - If the array is full at that index continue to the next possible position depending on your collision strategy.
+
+        Recipe for retrieving from a hash table:
+        - Take the key and plug it into the hash function, getting the hash code.
+        - Modulo that hash code by the length of the underlying array, getting an array index.
+        - Check if the array at that index has contents, if so, check the key saved there.
+        - If the key matches the one you're looking for, return the value.
+        - If the keys don't match, continue to the next position depending on your collision strategy.
+
+    Tress:
+
+        Trees are useful for modeling data that has a hierarchical relationship which moves in the direction from parent to child.
+        No child node will have more than one parent.
+
+        To recap some terms:
+
+            root: A node which has no parent. One per tree.
+            parent: A node which references other nodes.
+            child: Nodes referenced by other nodes.
+            sibling: Nodes which have the same parent.
+            leaf: Nodes which have no children.
+            level: The height or depth of the tree. Root nodes are at level 1, their children are at level 2, and so on.
+
+        TreeNodes:
+
+            have a value
+            have a reference to zero or more other TreeNodes
+            can add a node as a child
+            can remove a child
+            can traverse (or travel through) connected nodes
+
+
+
+            Trees are a Python class called TreeNode.
+            A TreeNode has two properties, value and children.
+            Nodes hold any type of data inside value.
+            children is a list, which can be empty or hold other instances of TreeNode.
+            We add to children by using the list method .append.
+            We remove from children by filtering the list.
+
+
+    Heaps:
+
+        Heaps tracking the maximum or minimum value are max-heaps or min-heaps. We will focus on min-heaps,
+        but the concepts for a max-heap are nearly identical.
+
+        Think of the min-heap as a binary tree with two qualities:
+
+            The root is the minimum value of the dataset.
+            Every child’s value is greater than its parent.
+
+
+
+        #-----------------------------------------------------------------------------------------
+        Heap Representations
+
+        We can picture min-heaps as binary trees, where each node has at most two children.
+        As we add elements to the heap, they’re added from left to right until we’ve filled the entire level.
+
+        At the top, we’ve filled the level containing 12 and 20. The next addition comes as the left child of 12,
+        starting a new level in the tree. We would continue filling this level from left to right until 20
+        had its right child filled.
+
+        Conceptually, the tree representation is beneficial for understanding. Practically,
+        we implement heaps in a sequential data structure like an array or list for efficiency.
+
+        Notice how by filling the tree from left to right; we’re leaving no gaps in the array.
+        The location of each child or parent derives from a formula using the index.
+
+            left child: (index * 2) + 1
+            right child: (index * 2) + 2
+            parent: (index - 1) / 2 — not used on the root!
+
+
+        #-----------------------------------------------------------------------------------------
+        Adding an Element: Heapify Up
+
+        Sometimes you will add an element to the heap that violates the heap’s essential properties.
+
+        We’re adding 3 as a left child of 11,
+        which violates the min-heap property that children must be larger or equal to their parent.
+
+        We need to restore the fundamental heap properties. This restoration is known as heapify or heapifying.
+        We’re adding an element to the bottom of the tree and moving upwards, so we’re heapifying up.
+
+        As long as we’ve violated the heap properties, we’ll swap the offending child with its parent until
+        we restore the properties, or until there’s no parent left. If there is no parent left,
+        that element becomes the new root of the tree.
+
+        3 swaps with 11, but there’s still work to do because now 3 is a child of 5.
+        One more swap and we’ve restored the heap properties. The parent value, 2, is lesser than the child, 3.
+        We can see that 3‘s children 5 and 14 are also greater.
+
+
+        #-----------------------------------------------------------------------------------------
+        Removing an Element: Heapify Down
+
+        Maintaining a minimum value is no good if we can never retrieve it,
+        so let’s explore how to remove the root node.
+
+        In the diagram, you can see removing the top node itself would be messy: there would be two children orphaned!
+        Instead, we’ll swap the root node, 2, with the bottom rightmost child: 20.
+        The bottom rightmost child is simple to remove because it has no children.
+
+        Unfortunately, we’ve violated the heap property. 20 is now the root node,
+        and that’s not the minimum value in the heap. We’ll heapify down to restore the heap property.
+
+        This process is similar to heapifying up, except we have two options (5 and 10) where we can make a swap.
+        We’ll choose the lesser of the two values and swap 20 with 5. This is necessary for the heap property,
+        if we had chosen to swap 20 with 10, then the minimum value would not be at the root. With 5 at the root,
+        the root node is the minimum value in the heap again.
+
+        Another swap is required because 20 is greater than its children, so we swap 20 with 11.
+
+        Now 20 no longer has any children (it is a child of 11),
+        and all other nodes in the heap only have parents with smaller values.
+
+        Just like that, we’ve retrieved the minimum value, allocated a new minimum, and maintained the heap property!
+
+        #-----------------------------------------------------------------------------------------
+
+        To recap: MinHeap tracks the minimum element as the element at index 1 within an internal Python list.
+
+        When adding elements, we use .heapify_up() to compare the new element with its parent,
+        making swaps if it violates the heap property: children must be greater than their parents.
+
+        When removing the minimum element, we swap it with the last element in the list. Then we use .heapify_down() to
+        compare the new root with its children, swapping with the smaller child if necessary.
+
+        Heaps are so useful because they’re efficient in maintaining their heap properties.
+        Building a heap using elements that decreased in value would ensure that
+        we continually violated the heap property.
+
+        #-----------------------------------------------------------------------------------------
+
+    Graphs:
+        Graphs are the perfect data structure for modeling networks, which make them an indispensable piece
+        of your data structure toolkit. They’re composed of nodes, or vertices, which hold data, and edges,
+        which are a connection between two vertices. A single node is a vertex.
+
+        Consider a map of the area where you live. As a graph, we could model bus stops as vertices,
+        with bus routes between stops functioning as the edges.
+
+        What about the internet? Web pages can be vertices, and the hyperlinks which connect them are edges.
+
+        Real-world relationships modeled as graphs are numerous, making them an essential concept to master.
+        route-map
+
+        #-----------------------------------------------------------------------------------------
+
+        To Connect, or Not to Connect?
+
+        Graphs have varying degrees of connection. The higher the ratio of edges to vertices,
+        the more connected the graph.
+
+        This graph represents a social network; people are vertices and edges are friendships.
+        Ted is adjacent to Patty, Ron, and Alice because an edge directly connects them.
+
+        We use a single line for an edge, but these friendships are bi-directional.
+        Patty is friends with Ron and Ron is friends with Patty.
+
+        A path is vertices which are connected by any number of intermediate edges.
+        The paths from Alice to Patty could go Alice to Ted to Patty or, Alice to Ted to Ron to Patty.
+
+        No path exists between Sally and Ted. When no path exists between two vertices, a graph is disconnected.
+        Disconnected graph.
+
+        #-----------------------------------------------------------------------------------------
+        You're Going to Carry that Weight
+
+        We’re building a graph of favorite neighborhood destinations (vertices) and routes (edges),
+        but not all edges are equal. It takes longer to travel between Gym and Museum than it does to travel between
+        Museum and Bakery.
+
+        This is a weighted graph, where edges have a number or cost associated with traveling between the vertices.
+        When tallying the cost of a path, we add up the total cost of the edges used.
+
+        These costs are essential to algorithms that find the shortest distance between two vertices.
+
+        Gym and Library are adjacent, there’s one edge between them,
+        but there’s less total cost to travel from Gym to Bakery to Library (10 vs. 9).
+
+        In a weighted graph, the shortest path is not always the least expensive.
+        Weighted graph.
+        #-----------------------------------------------------------------------------------------
+        Directed Graphs
+
+        Imagine you’re a superhero escaping a villain’s lair. As you move from perilous room to perilous room,
+        the doors close immediately behind you, barring any return.
+
+        For this dramatic example, we need a directed graph,
+        where edges restrict the direction of movement between vertices.
+
+        We can move from spikes to lasers, but not from lasers to spikes.
+        This differs from earlier examples when every edge was bi-directional.
+
+        Note the path spikes to lasers to piranhas to spikes. This path is a cycle,
+        because it ends on the vertex where it began: spikes.
+        Directed graph.
+        #-----------------------------------------------------------------------------------------
+        Representing Graphs
+
+        We typically represent the vertex-edge relationship of a graph in two ways:
+        an adjacency list or an adjacency matrix.
+
+        An adjacency matrix is a spreadsheet. Across the top, every vertex in the graph appears as a column.
+        Down the side, every vertex appears again as a row. Edges can be bi-directional, so each vertex is listed twice.
+
+        To find an edge between B and P, we would look for the B row and then trace across to the P column.
+        The contents of this cell represent a possible edge.
+
+        Our diagram uses 1 to mark an edge, 0 for the absence of an edge.
+        In a weighted graph, the cell contains the cost of that edge.
+
+        In an adjacency list, each vertex contains a list of the vertices where an edge exists.
+        To find an edge, one looks through the list for the desired vertex.
+        adjacency matrix.
+        #-----------------------------------------------------------------------------------------
+        Reviewing Key Terms
+
+        Graphs are an essential data structure in computer science for modeling networks. Let’s review some key terms:
+
+            vertex: A node in a graph.
+            edge: A connection between two vertices.
+            adjacent: When an edge exists between vertices.
+            path: A sequence of one or more edges between vertices.
+            disconnected: Graph where at least two vertices have no path connecting them.
+            weighted: Graph where edges have an associated cost.
+            directed: Graph where travel between vertices can be restricted to a single direction.
+            cycle: A path which begins and ends at the same vertex.
+            adjacency matrix: Graph representation where vertices are both the rows and the columns.
+            Each cell represents a possible edge.
+            adjacency list:
+            Graph representation where each vertex has a list of all the vertices it shares an edge with.
+
+             Our two classes, Vertex and Graph are capable of representing the typical variations in graphs that
+             occur in many different algorithms.
+
+            Vertex:
+
+                Uses a dictionary as an adjacency list to store connected vertices.
+                Connected vertex names are keys and the edge weights are values.
+                Has methods to add edges and return a list of connected vertices.
+
+            Graph:
+
+                Can be initialized as a directed graph, where edges are set in one direction.
+                Stores every vertex inside a dictionary
+                    Vertex data is the key and the vertex instance is the value.
+                Has methods to add vertices, edges between vertices,
+                and determine if a path exists between two vertices.
+
+            Code that represent simple Vertex and Graph
+
+                class Vertex:
+                  def __init__(self, value):
+                    self.value = value
+                    self.edges = {}
+
+                  def add_edge(self, vertex, weight = 0):
+                    self.edges[vertex] = weight
+
+                  def get_edges(self):
+                    return list(self.edges.keys())
+
+
+                class Graph:
+                  def __init__(self, directed = False):
+                    self.graph_dict = {}
+                    self.directed = directed
+
+                  def add_vertex(self, vertex):
+                    self.graph_dict[vertex.value] = vertex
+
+                  def add_edge(self, from_vertex, to_vertex, weight = 0):
+                    self.graph_dict[from_vertex.value].add_edge(to_vertex.value, weight)
+                    if not self.directed:
+                      self.graph_dict[to_vertex.value].add_edge(from_vertex.value, weight)
+
+                  def find_path(self, start_vertex, end_vertex):
+                    start = [start_vertex]
+                    seen = {}
+                    while len(start) > 0:
+                      current_vertex = start.pop(0)
+                      seen[current_vertex] = True
+                      print("Visiting " + current_vertex)
+                      if current_vertex == end_vertex:
+                        return True
+                      else:
+                        vertices_to_visit = set(self.graph_dict[current_vertex].edges.keys())
+                        start += [vertex for vertex in vertices_to_visit if vertex not in seen]
+                    return False
