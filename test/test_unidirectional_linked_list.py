@@ -14,6 +14,11 @@ def test_can_start_with_node():
     assert linked_list.head_node == node
 
 
+def test_has_get_head_node():
+    linked_list = ULinkedList()
+    linked_list.get_head_node()
+
+
 def test_add_node():
     node = Node(1)
     linked_list = ULinkedList()
@@ -24,11 +29,6 @@ def test_add_node():
     other_node = Node(2)
     linked_list.add_node(other_node)
     assert linked_list.head_node.get_link_node() == node
-
-
-def test_has_get_head_node():
-    linked_list = ULinkedList()
-    linked_list.get_head_node()
 
 
 def test_can_iter_linked_list():

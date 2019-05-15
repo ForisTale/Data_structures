@@ -4,19 +4,19 @@ class UnidirectionalLinkedList:
     def __init__(self, head_node=None):
         self.head_node = head_node
 
-    def add_node(self, node):
-        node.set_link_node(self.head_node)
-        self.head_node = node
-
-    def get_head_node(self):
-        return self.head_node
-
     def __iter__(self):
         current_node = self.get_head_node()
 
         while current_node:
             yield current_node.get_value()
             current_node = current_node.get_link_node()
+
+    def get_head_node(self):
+        return self.head_node
+
+    def add_node(self, node):
+        node.set_link_node(self.head_node)
+        self.head_node = node
 
     def remove_node(self, value_to_remove):
         if value_to_remove == self.get_head_node().get_value():
