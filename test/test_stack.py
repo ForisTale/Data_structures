@@ -12,7 +12,7 @@ def test_push():
     stack.push(node_2)
 
     assert stack.top_item == node_2
-    assert stack.top_item.get_link_node() == node_1
+    assert stack.top_item.get_next_node() == node_1
 
 
 def test_push_has_limit():

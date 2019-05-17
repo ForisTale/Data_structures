@@ -1,9 +1,9 @@
 
 
 class Node:
-    def __init__(self, value, link_node=None):
+    def __init__(self, value, next_node=None):
         self.value = value
-        self.link_node = link_node
+        self.next_node = next_node
 
     def __repr__(self):
         return "Node with value: " + str(self.value)
@@ -11,8 +11,8 @@ class Node:
     def get_value(self):
         return self.value
 
-    def set_link_node(self, link_node):
-        self.link_node = link_node
+    def set_next_node(self, link_node):
+        self.next_node = link_node
 
-    def get_link_node(self):
-        return self.link_node
+    def get_next_node(self):
+        return self.next_node

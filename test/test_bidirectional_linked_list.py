@@ -32,9 +32,9 @@ def test_remove_node(value, result, prev_node, next_node):
 
     linked_list.remove_node(value)
 
-    assert linked_list.get_head_node().get_link_node().get_value() == result
-    assert linked_list.get_head_node().get_link_node().get_prev_node() == eval(prev_node)
-    assert linked_list.get_head_node().get_link_node().get_next_node() == eval(next_node)
+    assert linked_list.get_head_node().get_next_node().get_value() == result
+    assert linked_list.get_head_node().get_next_node().get_prev_node() == eval(prev_node)
+    assert linked_list.get_head_node().get_next_node().get_next_node() == eval(next_node)
 
 
 def test_get_error_message_when_try_remove_non_exist_value():

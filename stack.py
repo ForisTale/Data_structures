@@ -17,7 +17,7 @@ class Stack:
 
     def push(self, node):
         if self.has_space():
-            node.set_link_node(self.top_item)
+            node.set_next_node(self.top_item)
             self.top_item = node
             self.size += 1
         else:
@@ -38,7 +38,7 @@ class Stack:
     def pop(self):
         if not self.is_empty():
             value_to_return = self.top_item.value
-            self.top_item = self.top_item.get_link_node()
+            self.top_item = self.top_item.get_next_node()
             self.size -= 1
             return value_to_return
         else:

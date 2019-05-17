@@ -8,11 +8,11 @@ def test_add_node():
     linked_list = ULinkedList()
     linked_list.add_node(node)
     assert linked_list.head_node == node
-    assert linked_list.head_node.get_link_node() is None
+    assert linked_list.head_node.get_next_node() is None
 
     other_node = Node(2)
     linked_list.add_node(other_node)
-    assert linked_list.head_node.get_link_node() == node
+    assert linked_list.head_node.get_next_node() == node
 
 
 @pytest.mark.parametrize("value, result", [
@@ -30,7 +30,7 @@ def test_remove_node(value, result):
 
     linked_list.remove_node(value)
 
-    assert linked_list.get_head_node().get_link_node().get_value() == result
+    assert linked_list.get_head_node().get_next_node().get_value() == result
 
 
 def test_get_error_message_when_try_remove_non_exist_value():

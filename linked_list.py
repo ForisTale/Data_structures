@@ -9,7 +9,7 @@ class LinkedList:
 
         while current_node:
             yield current_node.get_value()
-            current_node = current_node.get_link_node()
+            current_node = current_node.get_next_node()
 
     def get_head_node(self):
         return self.head_node

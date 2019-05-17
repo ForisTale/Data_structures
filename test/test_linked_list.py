@@ -24,7 +24,7 @@ def test_can_iter_linked_list():
     node_3 = Node(3)
 
     linked_list = LinkedList(node_1)
-    linked_list.get_head_node().set_link_node(node_2)
-    linked_list.get_head_node().get_link_node().set_link_node(node_3)
+    linked_list.get_head_node().set_next_node(node_2)
+    linked_list.get_head_node().get_next_node().set_next_node(node_3)
 
     assert [num for num in linked_list] == [1, 2, 3]

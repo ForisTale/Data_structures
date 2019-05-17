@@ -21,7 +21,7 @@ class Queue:
                 self.tail = node_to_enqueue
                 self.size += 1
             else:
-                node_to_enqueue.set_link_node(self.head)
+                node_to_enqueue.set_next_node(self.head)
                 self.head = node_to_enqueue
                 self.size += 1
         else:
@@ -44,11 +44,11 @@ class Queue:
             else:
                 current_node = self.head
                 while True:
-                    if current_node.get_link_node() is self.tail:
+                    if current_node.get_next_node() is self.tail:
                         self.tail = current_node
                         self.size -= 1
                         return value_to_return
-                    current_node = current_node.get_link_node()
+                    current_node = current_node.get_next_node()
         else:
             raise QueueIsEmpty
 
