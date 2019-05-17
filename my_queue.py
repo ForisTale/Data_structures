@@ -1,3 +1,6 @@
+from node import Node
+
+
 class QueueIsEmpty(Exception):
     pass
 
@@ -14,15 +17,17 @@ class Queue:
         self.limit = limit
         self.size = 0
 
-    def enqueue(self, node_to_enqueue):
+    def enqueue(self, value_to_enqueue):
         if self.has_space():
             if self.head is None:
-                self.head = node_to_enqueue
-                self.tail = node_to_enqueue
+                new_node = Node(value_to_enqueue)
+                self.head = new_node
+                self.tail = new_node
                 self.size += 1
             else:
-                node_to_enqueue.set_next_node(self.head)
-                self.head = node_to_enqueue
+                new_node = Node(value_to_enqueue)
+                new_node.set_next_node(self.head)
+                self.head = new_node
                 self.size += 1
         else:
             raise QueueIsFull

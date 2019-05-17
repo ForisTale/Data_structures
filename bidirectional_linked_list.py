@@ -3,8 +3,15 @@ from node import Node
 
 
 class BidirectionalLinkedList(LinkedList):
+    def __init__(self, head_node=None):
+        super().__init__(head_node)
+        if head_node is None:
+            self.head_node = head_node
+        else:
+            self.head_node = BidirectionalNode(head_node)
 
-    def add_node(self, node_to_add):
+    def add_node(self, value):
+        node_to_add = BidirectionalNode(value)
         node_to_add.set_next_node(self.get_head_node())
         self.get_head_node().set_prev_node(node_to_add)
         self.head_node = node_to_add

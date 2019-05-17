@@ -1,3 +1,4 @@
+from node import Node
 
 
 class StackIsFull(Exception):
@@ -15,10 +16,11 @@ class Stack:
         self.limit = limit
         self.size = 0
 
-    def push(self, node):
+    def push(self, value):
         if self.has_space():
-            node.set_next_node(self.top_item)
-            self.top_item = node
+            new_node = Node(value)
+            new_node.set_next_node(self.top_item)
+            self.top_item = new_node
             self.size += 1
         else:
             raise StackIsFull

@@ -1,18 +1,15 @@
 from my_queue import Queue, QueueIsEmpty, QueueIsFull
-from node import Node
 import pytest
 
 
 def test_enqueue():
     queue = Queue()
-    node_1 = Node(1)
-    node_2 = Node(2)
 
-    queue.enqueue(node_1)
-    queue.enqueue(node_2)
+    queue.enqueue(1)
+    queue.enqueue(2)
 
-    assert queue.head == node_2
-    assert queue.tail == node_1
+    assert queue.head.value == 2
+    assert queue.tail.value == 1
 
 
 def test_has_limit():
@@ -20,19 +17,16 @@ def test_has_limit():
     assert queue.has_space() is True
     assert queue.limit == 1
 
-    node_1 = Node(1)
-    node_2 = Node(2)
-    queue.enqueue(node_1)
+    queue.enqueue(1)
     assert queue.has_space() is False
     with pytest.raises(QueueIsFull):
-        queue.enqueue(node_2)
+        queue.enqueue(2)
 
 
 def test_get_size():
     queue = Queue()
-    node = Node(1)
     assert queue.get_size() == 0
-    queue.enqueue(node)
+    queue.enqueue(1)
     assert queue.get_size() == 1
     queue.dequeue()
     assert queue.get_size() == 0
@@ -40,24 +34,20 @@ def test_get_size():
 
 def test_peek():
     queue = Queue()
-    node = Node(1)
-    queue.enqueue(node)
+    queue.enqueue(1)
 
     assert queue.peek() == 1
 
 
 def test_dequeue():
     queue = Queue()
-    node_1 = Node(1)
-    node_2 = Node(2)
-    node_3 = Node(3)
-    queue.enqueue(node_1)
-    queue.enqueue(node_2)
-    queue.enqueue(node_3)
+    queue.enqueue(1)
+    queue.enqueue(2)
+    queue.enqueue(3)
 
     assert queue.dequeue() == 1
-    assert queue.head == node_3
-    assert queue.tail == node_2
+    assert queue.head.value == 3
+    assert queue.tail.value == 2
     queue.dequeue()
     assert queue.dequeue() == 3
     assert queue.head is None
@@ -68,8 +58,7 @@ def test_is_empty():
     queue = Queue()
     assert queue.is_empty() is True
 
-    node = Node(1)
-    queue.enqueue(node)
+    queue.enqueue(1)
     assert queue.is_empty() is False
 
 

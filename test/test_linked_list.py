@@ -8,9 +8,8 @@ def test_default_values():
 
 
 def test_can_start_with_node():
-    node = Node("test")
-    linked_list = LinkedList(node)
-    assert linked_list.head_node == node
+    linked_list = LinkedList("test")
+    assert linked_list.head_node.value == "test"
 
 
 def test_has_get_head_node():
@@ -19,11 +18,10 @@ def test_has_get_head_node():
 
 
 def test_can_iter_linked_list():
-    node_1 = Node(1)
     node_2 = Node(2)
     node_3 = Node(3)
 
-    linked_list = LinkedList(node_1)
+    linked_list = LinkedList(1)
     linked_list.get_head_node().set_next_node(node_2)
     linked_list.get_head_node().get_next_node().set_next_node(node_3)
 

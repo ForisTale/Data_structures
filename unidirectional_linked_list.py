@@ -1,11 +1,13 @@
 from linked_list import LinkedList
+from node import Node
 
 
 class UnidirectionalLinkedList(LinkedList):
 
-    def add_node(self, node):
-        node.set_next_node(self.head_node)
-        self.head_node = node
+    def add_node(self, value):
+        node_to_add = Node(value)
+        node_to_add.set_next_node(self.head_node)
+        self.head_node = node_to_add
 
     def remove_node(self, value_to_remove):
         if value_to_remove == self.get_head_node().get_value():
