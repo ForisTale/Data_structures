@@ -60,4 +60,3 @@ def test_retrieve():
     assert value_list == [("key_2", "value_2")]
 
     assert hash_map.retrieve("test") == print("Error, can't find value in linked list to delete!")
-

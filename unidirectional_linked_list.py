@@ -31,7 +31,9 @@ class UnidirectionalLinkedList(LinkedList):
 
     def pop(self, value_to_pop):
         current_node = self.get_head_node()
-        if current_node.get_value() == value_to_pop:
+        if current_node is None:
+            return
+        elif current_node.get_value() == value_to_pop:
             self.head_node = current_node.get_next_node()
             return current_node
 
@@ -45,8 +47,6 @@ class UnidirectionalLinkedList(LinkedList):
                     return next_node
 
             except AttributeError:
-                return None
+                return
 
             current_node = current_node.get_next_node()
-
-

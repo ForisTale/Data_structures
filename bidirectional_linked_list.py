@@ -12,6 +12,10 @@ class BidirectionalLinkedList(LinkedList):
 
     def add(self, value):
         node_to_add = BidirectionalNode(value)
+        if self.get_head_node() is None:
+            self.head_node = node_to_add
+            return
+
         node_to_add.set_next_node(self.get_head_node())
         self.get_head_node().set_prev_node(node_to_add)
         self.head_node = node_to_add
@@ -40,7 +44,7 @@ class BidirectionalLinkedList(LinkedList):
     def pop(self, value_to_pop):
         node_to_pop = self.find(value_to_pop)
         if node_to_pop is None:
-            return None
+            return
         elif node_to_pop is self.head_node:
             next_node = node_to_pop.get_next_node()
             if next_node is None:
