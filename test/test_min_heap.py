@@ -15,12 +15,13 @@ def test_add():
     heap.add(2)
     heap.add(1)
 
-    assert heap.heap[0] == 1
+    assert heap.heap_list[1] == 1
 
 
 def test_heapify_up():
     heap = MinHeap()
-    heap.heap = [None, 2, 3, 4, 1]
+    heap.heap_list = [None, 2, 3, 4, 1]
+    heap.size = 4
     heap.heapify_up()
 
-    assert heap.heap == [None, 1, 2, 3, 4]
+    assert heap.heap_list == [None, 1, 2, 4, 3]
