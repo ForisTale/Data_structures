@@ -50,9 +50,10 @@ def test_assign():
 
 def test_retrieve():
     hash_map = HashMap(1)
-    hash_map.assign("key", "value")
+    hash_map.assign("key_1", "value_1")
+    hash_map.assign("key_2", "value_2")
 
-    value = hash_map.retrieve("key")
-    assert value == "value"
+    value = hash_map.retrieve("key_1")
+    assert value == "value_1"
 
 

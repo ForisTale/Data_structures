@@ -29,7 +29,10 @@ class HashMap:
         array_item = self.array[array_index]
         current_node = array_item.get_head_node()
 
-        return current_node.get_value()[1]
+        while current_node:
+            if current_node.get_value()[0] == key:
+                return current_node.get_value()[1]
+            current_node = current_node.get_next_node()
 
     @staticmethod
     def hash(key):
