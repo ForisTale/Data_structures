@@ -27,10 +27,20 @@ def test_remove_node(value, value_list):
     assert ll_value_list == value_list
 
 
+def test_remove_all_items():
+    linked_list = ULinkedList(1)
+    linked_list.remove_node(1)
+
+    assert linked_list.head_node is None
+
+
 def test_get_error_message_when_try_remove_non_exist_value():
     linked_list = ULinkedList(1)
 
     assert linked_list.remove_node(5) == print("Error, can't find value in linked list to delete!")
+
+    linked_list.remove_node(1)
+    assert linked_list.remove_node(1) == print("Error, can't find value in linked list to delete!")
 
 
 @pytest.mark.parametrize("value_to_pop, result, value_list", [

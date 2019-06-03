@@ -10,8 +10,12 @@ class UnidirectionalLinkedList(LinkedList):
         self.head_node = node_to_add
 
     def remove_node(self, value_to_remove):
-        if value_to_remove == self.get_head_node().get_value():
-            self.head_node = self.get_head_node().get_next_node()
+        try:
+            if value_to_remove == self.get_head_node().get_value():
+                self.head_node = self.get_head_node().get_next_node()
+                return
+        except AttributeError:
+            print("Error, can't find value in linked list to delete!")
             return
 
         current_node = self.get_head_node()
