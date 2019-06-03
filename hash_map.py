@@ -8,16 +8,21 @@ class HashMap:
 
     def assign(self, key, value):
         array_index = self.compressor(self.hash(key))
-        current_point = self.array[array_index]
+        array_item = self.array[array_index]
+        current_node = array_item.get_head_node()
 
-        if current_point.get_head_node() is None:
-            current_point.add((key, value))
+        if current_node is None:
+            array_item.add((key, value))
             return
-        elif current_point.get_head_node().get_value()[0] == key:
-            current_point.get_head_node().set_value((key, value))
 
+        while current_node:
+            if current_node.get_value()[0] == key:
+                current_node.set_value((key, value))
+            elif current_node.get_next_node() is None:
+                array_item.add((key, value))
+                return
 
-
+            current_node = current_node.get_next_node()
 
     def retrieve(self, argument):
         pass
