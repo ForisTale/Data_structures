@@ -53,7 +53,9 @@ def test_pop_node(value_to_pop, result, value_list):
     assert ll_value_list == value_list
 
     backward_traverse = backward(linked_list, ll_value_list[-1])
-    assert backward_traverse == value_list.reverse()
+    value_list.reverse()
+
+    assert backward_traverse == value_list
 
     linked_list.pop(3)
     assert linked_list.get_head_node().get_next_node() is None

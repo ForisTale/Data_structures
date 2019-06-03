@@ -10,7 +10,7 @@ class BidirectionalLinkedList(LinkedList):
         else:
             self.head_node = BidirectionalNode(head_node)
 
-    def add_node(self, value):
+    def add(self, value):
         node_to_add = BidirectionalNode(value)
         node_to_add.set_next_node(self.get_head_node())
         self.get_head_node().set_prev_node(node_to_add)
@@ -31,6 +31,29 @@ class BidirectionalLinkedList(LinkedList):
             except AttributeError:
                 print("Error, can't find value in linked list to delete!")
             current_node = current_node.get_next_node()
+
+    def pop(self, value_to_pop):
+        node_to_pop = self.find(value_to_pop)
+        if node_to_pop is None:
+            return None
+        elif node_to_pop is self.head_node:
+            next_node = node_to_pop.get_next_node()
+            if next_node is None:
+                self.head_node = None
+                return node_to_pop
+            else:
+                self.head_node = next_node
+                next_node.set_prev_node(None)
+                return node_to_pop
+
+        prev_node = node_to_pop.get_prev_node()
+        next_node = node_to_pop.get_next_node()
+        if prev_node:
+            prev_node.set_next_node(next_node)
+        if next_node:
+            next_node.set_prev_node(prev_node)
+
+        return node_to_pop
 
 
 class BidirectionalNode(Node):
