@@ -21,3 +21,14 @@ def test_hash():
     hash_code = hash_map.hash(string)
 
     assert hash_code == sum(string.encode())
+
+
+def test_compressor():
+    hash_map = HashMap(3)
+    hash_code = hash_map.hash("test")
+    compressed = hash_map.compressor(hash_code)
+
+    result = (hash_code % 3)
+
+    assert compressed == result
+
