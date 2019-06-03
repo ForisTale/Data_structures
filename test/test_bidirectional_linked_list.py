@@ -37,6 +37,31 @@ def test_get_error_message_when_try_remove_non_exist_value():
     assert linked_list.remove_node(5) == print("Error, can't find value in linked list to delete!")
 
 
+@pytest.mark.parametrize("value_to_pop, result, value_list", [
+    (2, 2, [1, 3]),
+    (1, 1, [2, 3]),
+])
+def test_pop_node(value_to_pop, result, value_list):
+    linked_list = BLinkedList(3)
+    linked_list.add(2)
+    linked_list.add(1)
+
+    popped_node = linked_list.pop(value_to_pop)
+    ll_value_list = linked_list.traverse()
+
+    assert popped_node.get_value() == result
+    assert ll_value_list == value_list
+
+    backward_traverse = backward(linked_list, ll_value_list[-1])
+    assert backward_traverse == value_list.reverse()
+
+    linked_list.pop(3)
+    assert linked_list.get_head_node().get_next_node() is None
+
+    result = linked_list.pop(4)
+    assert result is None
+
+
 def test_bidirectional_node_has_basic_methods():
     node = BNode(1)
     node.get_value()
