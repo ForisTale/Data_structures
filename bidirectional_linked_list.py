@@ -17,9 +17,14 @@ class BidirectionalLinkedList(LinkedList):
         self.head_node = node_to_add
 
     def remove_node(self, value):
-        if self.get_head_node().get_value() == value:
-            self.head_node = self.get_head_node().get_next_node()
+        try:
+            if self.get_head_node().get_value() == value:
+                self.head_node = self.get_head_node().get_next_node()
+                return
+        except AttributeError:
+            print("Error, can't find value in linked list to delete!")
             return
+
         current_node = self.get_head_node()
         while current_node:
             try:
