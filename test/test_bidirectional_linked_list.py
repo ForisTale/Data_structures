@@ -6,8 +6,8 @@ import pytest
 def test_add_node():
 
     linked_list = BLinkedList(1)
-    linked_list.add_node(2)
-    linked_list.add_node(3)
+    linked_list.add(2)
+    linked_list.add(3)
     second_node = linked_list.get_head_node().get_next_node()
 
     assert second_node.get_next_node().value == 1
@@ -21,8 +21,8 @@ def test_add_node():
 def test_remove_node(value, result, prev_node, next_node):
 
     linked_list = BLinkedList(1)
-    linked_list.add_node(2)
-    linked_list.add_node(3)
+    linked_list.add(2)
+    linked_list.add(3)
 
     linked_list.remove_node(value)
 
@@ -44,3 +44,21 @@ def test_bidirectional_node_has_basic_methods():
     node.get_prev_node()
     node.set_next_node(None)
     node.set_prev_node(None)
+
+
+def backward(linked_list, last_value):
+    last_node = linked_list.find(last_value)
+    reverse_value_list = []
+    while last_node:
+        reverse_value_list.append(last_node.get_value())
+        last_node = last_node.get_prev_node()
+    return reverse_value_list
+
+
+def test_backward():
+    linked_list = BLinkedList(3)
+    linked_list.add(2)
+    linked_list.add(1)
+
+    value_list = backward(linked_list, 3)
+    assert value_list == [3, 2, 1]
