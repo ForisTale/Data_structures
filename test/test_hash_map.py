@@ -13,3 +13,11 @@ def test_hash_map():
     hash_map.assign("key", "value")
 
     assert hash_map.retrieve("key") == "value"
+
+
+def test_hash():
+    hash_map = HashMap(1)
+    string = "test"
+    hash_code = hash_map.hash(string)
+
+    assert hash_code == sum(string.encode())

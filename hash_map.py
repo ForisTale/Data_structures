@@ -10,3 +10,8 @@ class HashMap:
 
     def retrieve(self, argument):
         pass
+
+    def hash(self, key):
+        key_bytes = key.encode()
+        hash_code = sum(key_bytes)
+        return hash_code
