@@ -31,7 +31,10 @@ class HashMap:
 
         while current_node:
             if current_node.get_value()[0] == key:
-                return current_node.get_value()[1]
+                value = current_node.get_value()[1]
+                array_item.remove_node((key, value))
+                return value
+
             current_node = current_node.get_next_node()
 
     @staticmethod
