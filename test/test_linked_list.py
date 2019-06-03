@@ -45,3 +45,19 @@ def test_find_node_by_value():
     result = linked_list.find(5)
 
     assert result is None
+
+
+def test_traverse():
+    node_2 = Node(2)
+    node_3 = Node(3)
+
+    linked_list = LinkedList(1)
+    linked_list.get_head_node().set_next_node(node_2)
+    linked_list.get_head_node().get_next_node().set_next_node(node_3)
+
+    ll_list = linked_list.traverse()
+    assert ll_list == [1, 2, 3]
+
+    empty_ll = LinkedList()
+    empty_list = empty_ll.traverse()
+    assert empty_list == []
