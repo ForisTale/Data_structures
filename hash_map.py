@@ -24,8 +24,12 @@ class HashMap:
 
             current_node = current_node.get_next_node()
 
-    def retrieve(self, argument):
-        pass
+    def retrieve(self, key):
+        array_index = self.compressor(self.hash(key))
+        array_item = self.array[array_index]
+        current_node = array_item.get_head_node()
+
+        return current_node.get_value()[1]
 
     @staticmethod
     def hash(key):

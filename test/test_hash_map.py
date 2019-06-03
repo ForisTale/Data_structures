@@ -46,3 +46,13 @@ def test_assign():
 
     index_2 = hash_map.compressor(hash_map.hash("key_2"))
     assert hash_map.array[index_2].get_head_node().get_value() == ("key_2", "value_2")
+
+
+def test_retrieve():
+    hash_map = HashMap(1)
+    hash_map.assign("key", "value")
+
+    value = hash_map.retrieve("key")
+    assert value == "value"
+
+
