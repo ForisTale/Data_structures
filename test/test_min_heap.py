@@ -6,7 +6,7 @@ def test_min_heap():
     heap.add(1)
     heap.add(2)
 
-    value = heap.retrieve()
+    value = heap.retrieve_min()
     assert value == 1
 
 
@@ -25,3 +25,16 @@ def test_heapify_up():
     heap.heapify_up()
 
     assert heap.heap_list == [None, 1, 2, 4, 3]
+
+
+def test_retrieve_min():
+    heap = MinHeap()
+    heap.heap_list = [None, 1, 2]
+    heap.size = 2
+
+    minimum = heap.retrieve_min()
+    heap.size = 1
+    assert heap.heap_list == [None, 2]
+
+    heap.retrieve_min()
+    assert heap.retrieve_min() == print("Error, heap is empty!")

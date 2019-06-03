@@ -10,7 +10,7 @@ class MinHeap:
         self.size += 1
         self.heapify_up()
 
-    def retrieve(self):
+    def retrieve_min(self):
         pass
 
     def heapify_up(self):
