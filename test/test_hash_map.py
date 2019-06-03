@@ -32,3 +32,17 @@ def test_compressor():
 
     assert compressed == result
 
+
+def test_assign():
+    hash_map = HashMap(1)
+    hash_map.assign("key_1", "value_1")
+    hash_map.assign("key_2", "value_2")
+    index_1 = hash_map.compressor(hash_map.hash("key_1"))
+
+    assert hash_map.array[index_1].get_head_node().get_value() == ("key_1", "value_1")
+
+    hash_map.assign("key_1", "test")
+    assert hash_map.array[index_1].get_head_node().get_value() == ("key_1", "test")
+
+    index_2 = hash_map.compressor(hash_map.hash("key_2"))
+    assert hash_map.array[index_2].get_head_node().get_value() == ("key_2", "value_2")
