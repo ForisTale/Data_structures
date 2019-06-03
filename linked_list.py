@@ -17,3 +17,12 @@ class LinkedList:
 
     def get_head_node(self):
         return self.head_node
+
+    def find(self, value_to_find):
+        current_node = self.head_node
+
+        while current_node:
+            if current_node.get_value() == value_to_find:
+                return current_node
+            current_node = current_node.get_next_node()
+        return None
