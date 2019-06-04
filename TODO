@@ -1,2 +1,3 @@
 DONE Change LinkedList, stack, queue that they takes value, not node.
-TODO fix check for print errors.
+DONE fix check for print errors.
+TODO Refactor all tests.
