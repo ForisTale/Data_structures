@@ -1,1 +1,2 @@
 DONE Change LinkedList, stack, queue that they takes value, not node.
+TODO fix check for print errors.
