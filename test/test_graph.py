@@ -1,20 +1,23 @@
 from graph import Graph, Vertex
 
 
-def test_show_path_in_bidirectional_graph():
+def test_show_path_in_bidirectional_graph(capsys):
     graph = Graph()
     vertex_1 = Vertex(1)
     vertex_2 = Vertex(2)
     vertex_3 = Vertex(3)
+    vertex_4 = Vertex(4)
 
     graph.add_vertex(vertex_1)
     graph.add_vertex(vertex_2)
     graph.add_vertex(vertex_3)
+    graph.add_vertex(vertex_4)
 
     graph.add_edge(vertex_1, vertex_3)
-    graph.add_edge(vertex_3, vertex_2)
+    graph.add_edge(vertex_3, vertex_2, 1)
 
-    graph.show_path(vertex_1, vertex_2)
+    assert graph.has_path(vertex_1, vertex_2) is True
+    assert graph.has_path(vertex_1, vertex_4) is False
 
 
 def test_show_path_in_directional_graph():
