@@ -11,8 +11,11 @@ class MinHeap:
         self.heapify_up()
 
     def retrieve_min(self):
-        self.heap_list[1], self.heap_list[self.size] = self.heap_list[self.size], self.heap_list[1]
+        if self.size < 1:
+            return
+        self.swap(1, self.size)
         min_value = self.heap_list.pop()
+        self.size -= 1
         self.heapify_down()
 
         return min_value
@@ -30,7 +33,11 @@ class MinHeap:
 
     def heapify_down(self):
         index = 1
-        index_of_smaller = self.get_smaller_child(index)
+        while self.has_child(index):
+            index_of_smaller = self.get_smaller_child(index)
+            if self.heap_list[index] > self.heap_list[index_of_smaller]:
+                self.swap(index, index_of_smaller)
+            index = index_of_smaller
 
     def get_smaller_child(self, index):
         right_index = self.right_index(index)
