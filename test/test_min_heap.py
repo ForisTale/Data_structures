@@ -27,7 +27,7 @@ def test_heapify_up():
     assert heap.heap_list == [None, 1, 2, 4, 3]
 
 
-def test_retrieve_min():
+def test_retrieve_min(capsys):
     heap = MinHeap()
     heap.heap_list = [None, 1, 2, 4, 3]
     heap.size = 4
@@ -40,7 +40,9 @@ def test_retrieve_min():
     heap.retrieve_min()
     heap.retrieve_min()
     heap.retrieve_min()
-    assert heap.retrieve_min() == print("Error, heap is empty!")
+    assert heap.retrieve_min() is None
+    captured = capsys.readouterr()
+    assert captured.out == "Error, heap is empty!\n"
 
 
 def test_heapify_down():

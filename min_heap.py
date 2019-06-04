@@ -12,6 +12,7 @@ class MinHeap:
 
     def retrieve_min(self):
         if self.size < 1:
+            print("Error, heap is empty!")
             return
         self.swap(1, self.size)
         min_value = self.heap_list.pop()

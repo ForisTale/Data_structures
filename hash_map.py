@@ -36,6 +36,7 @@ class HashMap:
                 return value
 
             current_node = current_node.get_next_node()
+        print("Error, can't find value in linked list to delete!")
 
     @staticmethod
     def hash(key):

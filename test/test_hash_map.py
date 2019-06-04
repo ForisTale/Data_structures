@@ -48,7 +48,7 @@ def test_assign():
     assert hash_map.array[index_2].get_head_node().get_value() == ("key_2", "value_2")
 
 
-def test_retrieve():
+def test_retrieve(capsys):
     hash_map = HashMap(1)
     hash_map.assign("key_1", "value_1")
     hash_map.assign("key_2", "value_2")
@@ -59,4 +59,6 @@ def test_retrieve():
     value_list = hash_map.array[0].traverse()
     assert value_list == [("key_2", "value_2")]
 
-    assert hash_map.retrieve("test") == print("Error, can't find value in linked list to delete!")
+    assert hash_map.retrieve("test") is None
+    captured = capsys.readouterr()
+    assert captured.out == "Error, can't find value in linked list to delete!\n"

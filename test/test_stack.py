@@ -24,11 +24,16 @@ def test_push_has_limit():
         stack.push(2)
 
 
-def test_peek():
+def test_peek(capsys):
     stack = Stack()
-    assert stack.peek() == "Stack is empty!"
+    assert stack.peek() is None
+    captured = capsys.readouterr()
+    assert captured.out == "Stack is empty!\n"
+
     stack.push(1)
+    captured = capsys.readouterr()
     assert stack.peek() == 1
+    assert captured.out == ""
 
 
 def test_pop():

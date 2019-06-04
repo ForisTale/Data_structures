@@ -35,7 +35,8 @@ class Stack:
         if not self.is_empty():
             return self.top_item.value
         else:
-            return "Stack is empty!"
+            print("Stack is empty!")
+            return
 
     def pop(self):
         if not self.is_empty():

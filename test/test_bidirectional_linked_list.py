@@ -39,13 +39,17 @@ def test_remove_all_items():
     assert linked_list.head_node is None
 
 
-def test_get_error_message_when_try_remove_non_exist_value():
+def test_get_error_message_when_try_remove_non_exist_value(capsys):
     linked_list = BLinkedList(1)
 
-    assert linked_list.remove_node(5) == print("Error, can't find value in linked list to delete!")
+    assert linked_list.remove_node(5) is None
+    captured = capsys.readouterr()
+    assert captured.out == "Error, can't find value in linked list to delete!\n"
 
     linked_list.remove_node(1)
-    assert linked_list.remove_node(1) == print("Error, can't find value in linked list to delete!")
+    assert linked_list.remove_node(1) is None
+    captured = capsys.readouterr()
+    assert captured.out == "Error, can't find value in linked list to delete!\n"
 
 
 @pytest.mark.parametrize("value_to_pop, result, value_list", [
