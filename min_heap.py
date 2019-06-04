@@ -11,7 +11,11 @@ class MinHeap:
         self.heapify_up()
 
     def retrieve_min(self):
-        pass
+        self.heap_list[1], self.heap_list[self.size] = self.heap_list[self.size], self.heap_list[1]
+        min_value = self.heap_list.pop()
+        self.heapify_down()
+
+        return min_value
 
     def heapify_up(self):
         index = self.size
@@ -23,6 +27,10 @@ class MinHeap:
                 self.heap_list[index] = parent
                 self.heap_list[self.parent_index(index)] = child
             index = self.parent_index(index)
+
+    def heapify_down(self):
+        index = 1
+
 
     @staticmethod
     def parent_index(index):

@@ -29,12 +29,29 @@ def test_heapify_up():
 
 def test_retrieve_min():
     heap = MinHeap()
-    heap.heap_list = [None, 1, 2]
+    heap.heap_list = [None, 1, 2, 4, 3]
     heap.size = 2
 
     minimum = heap.retrieve_min()
     heap.size = 1
+    assert minimum == 1
     assert heap.heap_list == [None, 2]
 
     heap.retrieve_min()
     assert heap.retrieve_min() == print("Error, heap is empty!")
+
+
+def test_heapify_down():
+    heap = MinHeap()
+    heap.heap_list = [None, 4, 2, 3]
+    heap.heapify_down()
+
+    assert heap.heap_list == [None, 2, 4, 3]
+
+
+def test_smaller_child():
+    heap = MinHeap()
+    heap.heap_list = [None, 3, 4, 5]
+    smaller = heap.smaller_child(1)
+
+    assert smaller == 2
