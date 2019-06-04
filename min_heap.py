@@ -31,6 +31,18 @@ class MinHeap:
     def heapify_down(self):
         index = 1
 
+    def get_smaller_child(self, index):
+        right_index = self.right_index(index)
+        left_index = self.left_index(index)
+
+        if right_index > self.size:
+            return left_index
+
+        if self.heap_list[left_index] < self.heap_list[right_index]:
+            return left_index
+        else:
+            return right_index
+
 
     @staticmethod
     def parent_index(index):

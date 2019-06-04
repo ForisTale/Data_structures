@@ -52,6 +52,16 @@ def test_heapify_down():
 def test_smaller_child():
     heap = MinHeap()
     heap.heap_list = [None, 3, 4, 5]
-    smaller = heap.smaller_child(1)
+    heap.size = 3
+    smaller_1 = heap.get_smaller_child(1)
+    heap.heap_list = [None, 3, 5, 4]
+    smaller_2 = heap.get_smaller_child(1)
+
+    assert smaller_1 == 2
+    assert smaller_2 == 3
+
+    heap.heap_list = [None, 3, 4]
+    heap.size = 2
+    smaller = heap.get_smaller_child(1)
 
     assert smaller == 2
