@@ -65,3 +65,11 @@ def test_smaller_child():
     smaller = heap.get_smaller_child(1)
 
     assert smaller == 2
+
+
+def test_swap():
+    heap = MinHeap()
+    heap.heap_list = [None, 3, 4]
+    heap.swap(1, 2)
+
+    assert heap.heap_list == [None, 4, 3]

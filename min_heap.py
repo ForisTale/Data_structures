@@ -30,6 +30,8 @@ class MinHeap:
 
     def heapify_down(self):
         index = 1
+        index_of_smaller = self.get_smaller_child(index)
+
 
     def get_smaller_child(self, index):
         right_index = self.right_index(index)
@@ -43,7 +45,6 @@ class MinHeap:
         else:
             return right_index
 
-
     @staticmethod
     def parent_index(index):
         return index // 2
@@ -55,3 +56,6 @@ class MinHeap:
     @staticmethod
     def right_index(index):
         return index * 2 + 1
+
+    def swap(self, first, second):
+        self.heap_list[first], self.heap_list[second] = self.heap_list[second], self.heap_list[first]
