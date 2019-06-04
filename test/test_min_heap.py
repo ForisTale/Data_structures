@@ -73,3 +73,14 @@ def test_swap():
     heap.swap(1, 2)
 
     assert heap.heap_list == [None, 4, 3]
+
+
+def test_has_child():
+    heap = MinHeap()
+    heap.heap_list = [None, 3, 4]
+    heap.size = 2
+    for_num_3 = heap.has_child(1)
+    for_num_4 = heap.has_child(2)
+
+    assert for_num_3 is True
+    assert for_num_4 is False
