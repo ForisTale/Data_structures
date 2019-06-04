@@ -27,10 +27,10 @@ def test_vertex():
 
     assert vertex_1.value == 1
 
-    assert vertex_1.get_edges == {}
+    assert vertex_1.get_edges() == []
     vertex_1.add_edge(vertex_2)
     assert vertex_1.edges == {vertex_2: 0}
-    assert vertex_1.get_edges == [vertex_2]
+    assert vertex_1.get_edges() == [vertex_2]
 
     vertex_1.edges = {}
     vertex_1.add_edge(vertex_2, 1)
