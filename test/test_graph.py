@@ -1,7 +1,7 @@
 from graph import Graph, Vertex
 
 
-def test_show_path_in_bidirectional_graph(capsys):
+def test_has_path_in_bidirectional_graph(capsys):
     graph = Graph()
     vertex_1 = Vertex(1)
     vertex_2 = Vertex(2)
@@ -17,6 +17,7 @@ def test_show_path_in_bidirectional_graph(capsys):
     graph.add_edge(vertex_3, vertex_2, 1)
 
     assert graph.has_path(vertex_1, vertex_2) is True
+    assert graph.has_path(vertex_2, vertex_1) is True
     assert graph.has_path(vertex_1, vertex_4) is False
 
 
