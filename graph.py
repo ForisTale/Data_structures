@@ -3,12 +3,14 @@
 class Graph:
     def __init__(self, directed=False):
         self.directed = directed
+        self.graph_dict = {}
 
     def add_vertex(self, vertex):
-        pass
+        self.graph_dict[vertex.value] = vertex
 
     def add_edge(self, from_vertex, to_vertex, weight=0):
-        pass
+        self.graph_dict[from_vertex.value].add_edge(to_vertex, weight)
+        self.graph_dict[to_vertex.value].add_edge(from_vertex, weight)
 
     def has_path(self, start_vertex, end_vertex):
         pass
