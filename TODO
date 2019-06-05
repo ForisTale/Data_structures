@@ -1,3 +1,5 @@
 DONE Change LinkedList, stack, queue that they takes value, not node.
 DONE fix check for print errors.
 TODO Refactor all tests.
+TODO Add to graph get_vertex by value, if more than one with same value return list with all.
+TODO For graph print_vertexes method that will print all vertexes with connections.
