@@ -18,22 +18,23 @@ def build_graph(request):
 
     graph.add_edge(vertex_1, vertex_3)
     graph.add_edge(vertex_3, vertex_2, 1)
-    return graph
+    yield graph
+
+    vertex_1.edges = {}
+    vertex_2.edges = {}
+    vertex_3.edges = {}
+    vertex_4.edges = {}
 
 
-def test_has_path(build_graph):
+def test_is_directed(build_graph):
     graph = build_graph
 
     if graph.directed is False:
-        cases_for_directed = [{vertex_1: 0, vertex_2: 1}, True]
+        cases_for_directed = {vertex_1: 0, vertex_2: 1}
     else:
-        cases_for_directed = [{vertex_2: 1}, False]
+        cases_for_directed = {vertex_2: 1}
 
-    assert vertex_3.edges == cases_for_directed[0]
-
-    assert graph.has_path(vertex_1, vertex_2) is True
-    assert graph.has_path(vertex_2, vertex_1) is cases_for_directed[1]
-    assert graph.has_path(vertex_1, vertex_4) is False
+    assert vertex_3.edges == cases_for_directed
 
 
 def test_add_vertex(build_graph):
