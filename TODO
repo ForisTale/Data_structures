@@ -2,4 +2,4 @@ DONE Change LinkedList, stack, queue that they takes value, not node.
 DONE fix check for print errors.
 TODO Refactor all tests.
 DONE Add to graph get_vertex by value.
-TODO For graph print_vertexes method that will print all vertexes with connections.
+DONE For graph print_vertexes method that will print all vertexes with connections.

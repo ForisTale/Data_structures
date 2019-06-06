@@ -19,11 +19,20 @@ class Graph:
     def get_vertex(self, value):
         return self.graph_dict[value]
 
+    def print(self):
+        string = ""
+        for key, item in self.graph_dict.items():
+            string += f"Vertex {key} is connected to {item.get_edges()}.\n"
+        print(string)
+
 
 class Vertex:
     def __init__(self, value):
         self.value = value
         self.edges = {}
+
+    def __repr__(self):
+        return self.value
 
     def get_edges(self):
         return list(self.edges.keys())

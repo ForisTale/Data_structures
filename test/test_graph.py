@@ -54,6 +54,13 @@ def test_vertex():
     assert vertex_1.edges == {vertex_2: 1}
 
 
+def test_print(build_graph, capsys):
+    graph = build_graph
+    graph.print()
+    captured = capsys.readouterr()
+    assert "vertex_1" in captured.out
+
+
 @pytest.fixture(params=[True, False])
 def build_graph(request):
     graph = Graph(request.param)
