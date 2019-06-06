@@ -7,11 +7,11 @@ def test_add_vertex(build_graph):
     key_value = []
 
     for key, item in graph.graph_dict.items():
-        key_value.append({key: item.value})
+        key_value.append((key, item.value))
     key_value.sort()
 
-    assert key_value == [{"vertex_1": "vertex_1"}, {"vertex_2": "vertex_2"},
-                         {"vertex_3": "vertex_3"}, {"vertex_4": "vertex_4"}, ]
+    assert key_value == [("vertex_1", "vertex_1"), ("vertex_2", "vertex_2"),
+                         ("vertex_3", "vertex_3"), ("vertex_4", "vertex_4")]
 
 
 def test_is_directed(build_graph):
@@ -53,8 +53,8 @@ def build_graph(request):
     graph.add_vertex("vertex_3")
     graph.add_vertex("vertex_4")
 
-    graph.add_edge(vertex_1, vertex_3)
-    graph.add_edge(vertex_3, vertex_2, 1)
+    # graph.add_edge(vertex_1, vertex_3)
+    # graph.add_edge(vertex_3, vertex_2, 1)
     yield graph
 
     for key, item in graph.graph_dict.items():

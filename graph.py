@@ -5,8 +5,8 @@ class Graph:
         self.directed = directed
         self.graph_dict = {}
 
-    def add_vertex(self, vertex):
-        self.graph_dict[vertex.value] = vertex
+    def add_vertex(self, value):
+        self.graph_dict[value] = Vertex(value)
 
     def add_edge(self, from_vertex, to_vertex, weight=0):
         self.graph_dict[from_vertex.value].add_edge(to_vertex, weight)
