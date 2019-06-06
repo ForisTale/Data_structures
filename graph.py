@@ -13,6 +13,9 @@ class Graph:
         if not self.directed:
             self.graph_dict[to_vertex.value].add_edge(from_vertex, weight)
 
+    def get_vertex(self, value):
+        return self.graph_dict[value]
+
 
 class Vertex:
     def __init__(self, value):
