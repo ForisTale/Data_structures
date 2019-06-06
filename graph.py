@@ -1,11 +1,17 @@
 
 
+class VertexExists(Exception):
+    pass
+
+
 class Graph:
     def __init__(self, directed=False):
         self.directed = directed
         self.graph_dict = {}
 
     def add_vertex(self, value):
+        if value in self.graph_dict:
+            raise VertexExists
         self.graph_dict[value] = Vertex(value)
 
     def add_edge(self, from_vertex_value, to_vertex_value, weight=0):
