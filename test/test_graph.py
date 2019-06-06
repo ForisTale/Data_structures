@@ -22,7 +22,13 @@ def test_is_directed(build_graph):
     else:
         cases_for_directed = [("vertex_2", 1)]
 
-    assert vertex_3.edges == cases_for_directed
+    vertex = graph.get_vertex("vertex_3")
+    edges = []
+
+    for key, item in vertex.edges.items():
+        edges.append((key.value, item))
+
+    assert edges == cases_for_directed
 
 
 def test_get_vertex(build_graph):
@@ -56,8 +62,8 @@ def build_graph(request):
     graph.add_vertex("vertex_3")
     graph.add_vertex("vertex_4")
 
-    # graph.add_edge("vertex_1", "vertex_3")
-    # graph.add_edge("vertex_3", "vertex_2", 1)
+    graph.add_edge("vertex_1", "vertex_3")
+    graph.add_edge("vertex_3", "vertex_2", 1)
     yield graph
 
     for key, item in graph.graph_dict.items():

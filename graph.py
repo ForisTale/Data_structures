@@ -8,10 +8,13 @@ class Graph:
     def add_vertex(self, value):
         self.graph_dict[value] = Vertex(value)
 
-    def add_edge(self, from_vertex, to_vertex, weight=0):
-        self.graph_dict[from_vertex.value].add_edge(to_vertex, weight)
+    def add_edge(self, from_vertex_value, to_vertex_value, weight=0):
+        from_vertex = self.get_vertex(from_vertex_value)
+        to_vertex = self.get_vertex(to_vertex_value)
+
+        from_vertex.add_edge(to_vertex, weight)
         if not self.directed:
-            self.graph_dict[to_vertex.value].add_edge(from_vertex, weight)
+            to_vertex.add_edge(from_vertex, weight)
 
     def get_vertex(self, value):
         return self.graph_dict[value]
