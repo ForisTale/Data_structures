@@ -1,5 +1,4 @@
-from graph import Graph, Vertex
-import pytest
+from graph import Vertex
 
 
 def test_add_vertex(build_graph):
@@ -61,17 +60,3 @@ def test_print(build_graph, capsys):
     assert "vertex_1" in captured.out
 
 
-@pytest.fixture(params=[True, False])
-def build_graph(request):
-    graph = Graph(request.param)
-    graph.add_vertex("vertex_1")
-    graph.add_vertex("vertex_2")
-    graph.add_vertex("vertex_3")
-    graph.add_vertex("vertex_4")
-
-    graph.add_edge("vertex_1", "vertex_3")
-    graph.add_edge("vertex_3", "vertex_2", 1)
-    yield graph
-
-    for key, item in graph.graph_dict.items():
-        item.edges = {}
