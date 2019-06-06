@@ -1,4 +1,5 @@
-from graph import Vertex
+from graph import Vertex, Graph, VertexExists
+import pytest
 
 
 def test_add_vertex(build_graph):
@@ -11,6 +12,13 @@ def test_add_vertex(build_graph):
 
     assert key_value == [("vertex_1", "vertex_1"), ("vertex_2", "vertex_2"),
                          ("vertex_3", "vertex_3"), ("vertex_4", "vertex_4")]
+
+
+def test_error_when_try_add_vertex_with_existing_value():
+    graph = Graph()
+    graph.add_vertex("test")
+    with pytest.raises(VertexExists):
+        graph.add_vertex("test")
 
 
 def test_is_directed(build_graph):
